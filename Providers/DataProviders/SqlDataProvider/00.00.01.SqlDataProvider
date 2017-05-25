@@ -1,0 +1,78 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/*Create table UserManager*/
+
+CREATE TABLE {databaseOwner}.[UserManager](
+	[UserId] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](max) NULL,
+	[Address] [nvarchar](max) NULL,
+	[ModuleId] [int] NULL,
+	[Email] [nvarchar](max) NULL,
+ CONSTRAINT [PK_UserManager] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+/*Create Store Procedure GetTasks*/
+create procedure {databaseOwner}{objectQualifier}UserManager_GetTasks
+	@ModuleId int
+AS
+	SELECT 
+	UserId,
+	Name,
+	Address,
+	ModuleId,
+	Email
+	FROM {databaseOwner}UserManager
+		where ModuleId = @ModuleId
+GO
+
+/*Create Store Procedure DeleteUser*/
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}UserManager_DeleteUser
+    @UserId int
+AS
+DELETE FROM {databaseOwner}UserManager
+WHERE  UserId = @UserId
+GO
+
+/*Create Store Procedure AddUser*/
+
+create procedure {databaseOwner}[{objectQualifier}UserManager_AddUser]
+	@UserId int,
+	@Name nvarchar(max),
+	@Address nvarchar(max),
+	@ModuleId	int,
+	@Email nvarchar(max)
+	
+AS
+	INSERT INTO  {databaseOwner}UserManager(
+	Name,
+	Address,
+	ModuleId,
+	Email
+	)
+VALUES  
+	(
+	@Name,
+	@Address,
+	@ModuleId,
+	@Email
+	)
+	select @@IDENTITY
+Go
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

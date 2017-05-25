@@ -1,0 +1,4 @@
+F:\DNN\DNN7\DNN_Platform_07.04.02_Source\Website\bin\UserManager.dll
+F:\DNN\DNN7\DNN_Platform_07.04.02_Source\Website\bin\UserManager.pdb
+F:\DNN\DNN7\DNN_Platform_07.04.02_Source\Website\DesktopModules\UserManager\obj\Release\UserManager.dll
+F:\DNN\DNN7\DNN_Platform_07.04.02_Source\Website\DesktopModules\UserManager\obj\Release\UserManager.pdb
